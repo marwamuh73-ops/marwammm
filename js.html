@@ -1,0 +1,67 @@
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactForm");
+  const alertBox = document.getElementById("formAlert");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alertBox.innerHTML = `<div class="alert alert-danger">يرجى ملء جميع الحقول.</div>`;
+        return;
+      }
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        alertBox.innerHTML = `<div class="alert alert-warning">صيغة البريد الإلكتروني غير صحيحة.</div>`;
+        return;
+      }
+
+      alertBox.innerHTML = `<div class="alert alert-success">تم إرسال رسالتك بنجاح!</div>`;
+      form.reset();
+    });
+  }
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const filterForm = document.querySelector("form");
+  const cards = document.querySelectorAll(".card");
+  if (filterForm && cards.length > 0) {
+    filterForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const category = filterForm.querySelector("select").value;
+      const date = filterForm.querySelector("input[type='date']").value;
+      cards.forEach(card => {
+        const cardText = card.querySelector(".card-text").textContent;
+        const matchesCategory = category === "اختر التصنيف" || cardText.includes(category);
+        const matchesDate = !date || cardText.includes(date);
+
+        if (matchesCategory && matchesDate) {
+          card.parentElement.style.display = "block";
+        } else {
+          card.parentElement.style.display = "none";
+        }
+      });
+    });
+  }
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach(card => {
+    card.addEventListener("mouseenter", () => {
+      card.classList.add("shadow-lg");
+    });
+    card.addEventListener("mouseleave", () => {
+      card.classList.remove("shadow-lg");
+    });
+  });
+  function setLanguage(lang) {
+  const textElement = document.getElementById("text");
+  if (lang === "ar") {
+  } else if (lang === "en") {
+ 
+  }
+}
+});
